@@ -1,0 +1,256 @@
+2024-07-08 22:31:37,543 p=8490 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 22:31:37,577 p=8490 u=gbrito n=ansible | {
+    "_meta": {
+        "hostvars": {
+            "127.0.0.1": {
+                "Var_grupo": "var grupo testing",
+                "Variable_host_Vars": "Valor Variable_host_Vars 127.0.0.1"
+            },
+            "localhost": {
+                "Var_grupo": "var grupo Produccion",
+                "Variable_host_Vars": "Valor Variable_host_Vars localhost",
+                "ansible_connection": "local"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "testing",
+            "produccion"
+        ]
+    },
+    "produccion": {
+        "hosts": [
+            "localhost"
+        ]
+    },
+    "testing": {
+        "hosts": [
+            "127.0.0.1"
+        ]
+    }
+}
+2024-07-08 22:40:57,001 p=8843 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 22:40:57,225 p=8843 u=gbrito n=ansible | ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  did not find expected key
+
+The error appears to be in '/home/gbrito/UTN-FRA_SO_Examenes/202406_Recu/ansible/playbook.yml': line 18, column 58, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+      debug:
+        msg: "Después de la ejecución de todos los roles"---
+                                                         ^ here
+This one looks easy to fix. It seems that there is a value started
+with a quote, and the YAML parser is expecting to see the line ended
+with the same kind of quote. For instance:
+
+    when: "ok" in result.stdout
+
+Could be written as:
+
+   when: '"ok" in result.stdout'
+
+Or equivalently:
+
+   when: "'ok' in result.stdout"
+
+2024-07-08 22:41:59,010 p=8850 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 22:41:59,260 p=8850 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 22:41:59,277 p=8850 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 22:41:59,517 p=8850 u=gbrito n=ansible | fatal: [127.0.0.1]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added '127.0.0.1' (ED25519) to the list of known hosts.\r\ngbrito@127.0.0.1: Permission denied (publickey,password).", "unreachable": true}
+2024-07-08 22:41:59,518 p=8850 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 22:41:59,518 p=8850 u=gbrito n=ansible | 127.0.0.1                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-07-08 22:48:53,628 p=3231 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 22:48:53,937 p=3231 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 22:48:53,954 p=3231 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 22:48:54,264 p=3231 u=gbrito n=ansible | fatal: [127.0.0.1]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added '127.0.0.1' (ED25519) to the list of known hosts.\r\ngbrito@127.0.0.1: Permission denied (publickey,password).", "unreachable": true}
+2024-07-08 22:48:55,345 p=3231 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 22:48:55,378 p=3231 u=gbrito n=ansible | TASK [include_role : 2PRecuperatorio] **************************************************************************************************************
+2024-07-08 22:48:55,423 p=3231 u=gbrito n=ansible | TASK [2PRecuperatorio : Tarea para crear archivo /tmp/alumno/datos.txt] ****************************************************************************
+2024-07-08 22:48:56,252 p=3231 u=gbrito n=ansible | fatal: [localhost]: FAILED! => {"changed": false, "checksum": "b95e8ffae9cfb7b2de0d5ba80a8f2a791f01d8ab", "msg": "Destination directory /tmp/alumno does not exist"}
+2024-07-08 22:48:56,253 p=3231 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 22:48:56,253 p=3231 u=gbrito n=ansible | 127.0.0.1                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-07-08 22:48:56,253 p=3231 u=gbrito n=ansible | localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-07-08 22:51:02,675 p=3391 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 22:51:02,883 p=3391 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 22:51:02,894 p=3391 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 22:51:03,174 p=3391 u=gbrito n=ansible | fatal: [127.0.0.1]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added '127.0.0.1' (ED25519) to the list of known hosts.\r\ngbrito@127.0.0.1: Permission denied (publickey,password).", "unreachable": true}
+2024-07-08 22:51:03,175 p=3391 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 22:51:03,175 p=3391 u=gbrito n=ansible | 127.0.0.1                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-07-08 22:55:49,067 p=3691 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 22:55:49,287 p=3691 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 22:55:49,297 p=3691 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 22:55:51,130 p=3691 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 22:55:51,162 p=3691 u=gbrito n=ansible | TASK [include_role : 2PRecuperatorio] **************************************************************************************************************
+2024-07-08 22:55:51,214 p=3691 u=gbrito n=ansible | TASK [2PRecuperatorio : Tarea para crear archivo /tmp/alumno/datos.txt] ****************************************************************************
+2024-07-08 22:55:52,485 p=3691 u=gbrito n=ansible | fatal: [127.0.0.1]: FAILED! => {"changed": false, "checksum": "b95e8ffae9cfb7b2de0d5ba80a8f2a791f01d8ab", "msg": "Destination directory /tmp/alumno does not exist"}
+2024-07-08 22:55:52,486 p=3691 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 22:55:52,486 p=3691 u=gbrito n=ansible | 127.0.0.1                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-07-08 23:01:24,014 p=6119 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 23:01:24,228 p=6119 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 23:01:24,237 p=6119 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 23:01:25,988 p=6119 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:01:26,022 p=6119 u=gbrito n=ansible | TASK [include_role : 2PRecuperatorio] **************************************************************************************************************
+2024-07-08 23:01:26,057 p=6119 u=gbrito n=ansible | ERROR! conflicting action statements: hosts, tasks
+
+The error appears to be in '/home/gbrito/UTN-FRA_SO_Examenes/202406_Recu/ansible/roles/2PRecuperatorio/tasks/main.yml': line 2, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+---
+- name: Tarea para crear archivo /tmp/alumno/datos.txt
+  ^ here
+
+2024-07-08 23:02:53,972 p=6301 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 23:02:54,176 p=6301 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 23:02:54,188 p=6301 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 23:02:55,918 p=6301 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:02:55,951 p=6301 u=gbrito n=ansible | TASK [include_role : 2PRecuperatorio] **************************************************************************************************************
+2024-07-08 23:02:55,994 p=6301 u=gbrito n=ansible | TASK [2PRecuperatorio : Tarea para crear archivo /tmp/alumno/datos.txt] ****************************************************************************
+2024-07-08 23:02:56,475 p=6301 u=gbrito n=ansible | changed: [127.0.0.1]
+2024-07-08 23:02:56,490 p=6301 u=gbrito n=ansible | TASK [2PRecuperatorio : Crear archivo /tmp/alumno/datos.txt] ***************************************************************************************
+2024-07-08 23:02:57,391 p=6301 u=gbrito n=ansible | changed: [127.0.0.1]
+2024-07-08 23:02:57,414 p=6301 u=gbrito n=ansible | TASK [include_role : Alta_Usuarios_Brito] **********************************************************************************************************
+2024-07-08 23:02:57,440 p=6301 u=gbrito n=ansible | ERROR! the role 'Alta_Usuarios_Brito' was not found in /home/gbrito/UTN-FRA_SO_Examenes/202406_Recu/ansible/roles:/tmp:/home/gbrito/UTN-FRA_SO_Examenes/202406_Recu:/home/gbrito/UTN-FRA_SO_Examenes/202406_Recu/ansible
+
+The error appears to be in '/home/gbrito/UTN-FRA_SO_Examenes/202406_Recu/ansible/playbook.yml': line 8, column 15, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    - include_role:
+        name: Alta_Usuarios_Brito
+              ^ here
+
+2024-07-08 23:02:57,441 p=6301 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 23:02:57,441 p=6301 u=gbrito n=ansible | 127.0.0.1                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-07-08 23:07:26,240 p=6638 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 23:07:26,445 p=6638 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 23:07:26,454 p=6638 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 23:07:28,119 p=6638 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:07:28,155 p=6638 u=gbrito n=ansible | TASK [include_role : 2PRecuperatorio] **************************************************************************************************************
+2024-07-08 23:07:28,196 p=6638 u=gbrito n=ansible | TASK [2PRecuperatorio : Tarea para crear archivo /tmp/alumno/datos.txt] ****************************************************************************
+2024-07-08 23:07:28,682 p=6638 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:07:28,697 p=6638 u=gbrito n=ansible | TASK [2PRecuperatorio : Crear archivo /tmp/alumno/datos.txt] ***************************************************************************************
+2024-07-08 23:07:29,467 p=6638 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:07:29,491 p=6638 u=gbrito n=ansible | TASK [include_role : Alta_Usuarios_Brito] **********************************************************************************************************
+2024-07-08 23:07:29,546 p=6638 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear usuarios Profesor y alumno] **************************************************************************************
+2024-07-08 23:07:30,201 p=6638 u=gbrito n=ansible | changed: [127.0.0.1]
+2024-07-08 23:07:30,215 p=6638 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : user] ******************************************************************************************************************
+2024-07-08 23:07:30,706 p=6638 u=gbrito n=ansible | changed: [127.0.0.1]
+2024-07-08 23:07:30,724 p=6638 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear grupo GProfesores si no existe] **********************************************************************************
+2024-07-08 23:07:31,246 p=6638 u=gbrito n=ansible | changed: [127.0.0.1]
+2024-07-08 23:07:31,258 p=6638 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear grupo GAlumnos si no existe] *************************************************************************************
+2024-07-08 23:07:31,630 p=6638 u=gbrito n=ansible | changed: [127.0.0.1]
+2024-07-08 23:07:31,654 p=6638 u=gbrito n=ansible | TASK [include_role : Sudoers_Brito] ****************************************************************************************************************
+2024-07-08 23:07:31,714 p=6638 u=gbrito n=ansible | TASK [Sudoers_Brito : Agregar configuración al archivo sudoers para el grupo GProfesores] **********************************************************
+2024-07-08 23:07:32,221 p=6638 u=gbrito n=ansible | changed: [127.0.0.1]
+2024-07-08 23:07:32,247 p=6638 u=gbrito n=ansible | TASK [include_role : Instala-tools_Brito] **********************************************************************************************************
+2024-07-08 23:07:32,307 p=6638 u=gbrito n=ansible | TASK [Instala-tools_Brito : Instalar htop, script, tmux, tree y speedtest-cli] *********************************************************************
+2024-07-08 23:07:39,298 p=6638 u=gbrito n=ansible | changed: [127.0.0.1] => (item=htop)
+2024-07-08 23:07:40,085 p=6638 u=gbrito n=ansible | failed: [127.0.0.1] (item=script) => {"ansible_loop_var": "item", "changed": false, "item": "script", "msg": "No package matching 'script' is available"}
+2024-07-08 23:07:46,989 p=6638 u=gbrito n=ansible | changed: [127.0.0.1] => (item=tmux)
+2024-07-08 23:07:48,006 p=6638 u=gbrito n=ansible | ok: [127.0.0.1] => (item=tree)
+2024-07-08 23:07:53,081 p=6638 u=gbrito n=ansible | changed: [127.0.0.1] => (item=speedtest-cli)
+2024-07-08 23:07:53,091 p=6638 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 23:07:53,091 p=6638 u=gbrito n=ansible | 127.0.0.1                  : ok=8    changed=5    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-07-08 23:12:35,101 p=7565 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 23:12:35,317 p=7565 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 23:12:35,329 p=7565 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 23:12:37,022 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:37,055 p=7565 u=gbrito n=ansible | TASK [include_role : 2PRecuperatorio] **************************************************************************************************************
+2024-07-08 23:12:37,101 p=7565 u=gbrito n=ansible | TASK [2PRecuperatorio : Tarea para crear archivo /tmp/alumno/datos.txt] ****************************************************************************
+2024-07-08 23:12:37,593 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:37,608 p=7565 u=gbrito n=ansible | TASK [2PRecuperatorio : Crear archivo /tmp/alumno/datos.txt] ***************************************************************************************
+2024-07-08 23:12:38,366 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:38,390 p=7565 u=gbrito n=ansible | TASK [include_role : Alta_Usuarios_Brito] **********************************************************************************************************
+2024-07-08 23:12:38,438 p=7565 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear usuarios Profesor y alumno] **************************************************************************************
+2024-07-08 23:12:39,065 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:39,078 p=7565 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : user] ******************************************************************************************************************
+2024-07-08 23:12:39,508 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:39,526 p=7565 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear grupo GProfesores si no existe] **********************************************************************************
+2024-07-08 23:12:40,078 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:40,099 p=7565 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear grupo GAlumnos si no existe] *************************************************************************************
+2024-07-08 23:12:40,479 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:40,504 p=7565 u=gbrito n=ansible | TASK [include_role : Sudoers_Brito] ****************************************************************************************************************
+2024-07-08 23:12:40,557 p=7565 u=gbrito n=ansible | TASK [Sudoers_Brito : Agregar configuración al archivo sudoers para el grupo GProfesores] **********************************************************
+2024-07-08 23:12:41,113 p=7565 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:12:41,144 p=7565 u=gbrito n=ansible | TASK [include_role : Instala-tools_Brito] **********************************************************************************************************
+2024-07-08 23:12:41,203 p=7565 u=gbrito n=ansible | TASK [Instala-tools_Brito : Instalar htop, tmux, tree y speedtest-cli] *****************************************************************************
+2024-07-08 23:12:42,502 p=7565 u=gbrito n=ansible | ok: [127.0.0.1] => (item=htop)
+2024-07-08 23:12:43,555 p=7565 u=gbrito n=ansible | ok: [127.0.0.1] => (item=tmux)
+2024-07-08 23:12:44,603 p=7565 u=gbrito n=ansible | ok: [127.0.0.1] => (item=tree)
+2024-07-08 23:12:45,663 p=7565 u=gbrito n=ansible | ok: [127.0.0.1] => (item=speedtest-cli)
+2024-07-08 23:12:45,691 p=7565 u=gbrito n=ansible | TASK [Otra tarea] **********************************************************************************************************************************
+2024-07-08 23:12:45,707 p=7565 u=gbrito n=ansible | ok: [127.0.0.1] => {
+    "msg": "Después de la ejecución de todos los roles"
+}
+2024-07-08 23:12:45,755 p=7565 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 23:12:45,755 p=7565 u=gbrito n=ansible | 127.0.0.1                  : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-07-08 23:20:55,444 p=8137 u=gbrito n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-07-08 23:20:55,650 p=8137 u=gbrito n=ansible | PLAY [all] *****************************************************************************************************************************************
+2024-07-08 23:20:55,662 p=8137 u=gbrito n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2024-07-08 23:20:56,947 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:20:57,061 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:20:57,119 p=8137 u=gbrito n=ansible | TASK [include_role : 2PRecuperatorio] **************************************************************************************************************
+2024-07-08 23:20:57,199 p=8137 u=gbrito n=ansible | TASK [2PRecuperatorio : Tarea para crear archivo /tmp/alumno/datos.txt] ****************************************************************************
+2024-07-08 23:20:57,630 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:20:57,685 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:20:57,698 p=8137 u=gbrito n=ansible | TASK [2PRecuperatorio : Crear archivo /tmp/alumno/datos.txt] ***************************************************************************************
+2024-07-08 23:20:58,408 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:20:58,489 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:20:58,523 p=8137 u=gbrito n=ansible | TASK [include_role : Alta_Usuarios_Brito] **********************************************************************************************************
+2024-07-08 23:20:58,605 p=8137 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear usuarios Profesor y alumno] **************************************************************************************
+2024-07-08 23:20:59,182 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:20:59,218 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:20:59,233 p=8137 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : user] ******************************************************************************************************************
+2024-07-08 23:20:59,620 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:20:59,667 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:20:59,681 p=8137 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear grupo GProfesores si no existe] **********************************************************************************
+2024-07-08 23:21:00,124 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:21:00,184 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:21:00,197 p=8137 u=gbrito n=ansible | TASK [Alta_Usuarios_Brito : Crear grupo GAlumnos si no existe] *************************************************************************************
+2024-07-08 23:21:00,514 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:21:00,563 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:21:00,599 p=8137 u=gbrito n=ansible | TASK [include_role : Sudoers_Brito] ****************************************************************************************************************
+2024-07-08 23:21:00,687 p=8137 u=gbrito n=ansible | TASK [Sudoers_Brito : Agregar configuración al archivo sudoers para el grupo GProfesores] **********************************************************
+2024-07-08 23:21:01,128 p=8137 u=gbrito n=ansible | ok: [localhost]
+2024-07-08 23:21:01,172 p=8137 u=gbrito n=ansible | ok: [127.0.0.1]
+2024-07-08 23:21:01,209 p=8137 u=gbrito n=ansible | TASK [include_role : Instala-tools_Brito] **********************************************************************************************************
+2024-07-08 23:21:01,304 p=8137 u=gbrito n=ansible | TASK [Instala-tools_Brito : Instalar htop, tmux, tree y speedtest-cli] *****************************************************************************
+2024-07-08 23:21:02,556 p=8137 u=gbrito n=ansible | ok: [localhost] => (item=htop)
+2024-07-08 23:21:02,589 p=8137 u=gbrito n=ansible | ok: [127.0.0.1] => (item=htop)
+2024-07-08 23:21:03,579 p=8137 u=gbrito n=ansible | ok: [localhost] => (item=tmux)
+2024-07-08 23:21:03,658 p=8137 u=gbrito n=ansible | ok: [127.0.0.1] => (item=tmux)
+2024-07-08 23:21:04,599 p=8137 u=gbrito n=ansible | ok: [localhost] => (item=tree)
+2024-07-08 23:21:04,719 p=8137 u=gbrito n=ansible | ok: [127.0.0.1] => (item=tree)
+2024-07-08 23:21:05,598 p=8137 u=gbrito n=ansible | ok: [localhost] => (item=speedtest-cli)
+2024-07-08 23:21:05,823 p=8137 u=gbrito n=ansible | ok: [127.0.0.1] => (item=speedtest-cli)
+2024-07-08 23:21:05,860 p=8137 u=gbrito n=ansible | TASK [Otra tarea] **********************************************************************************************************************************
+2024-07-08 23:21:05,883 p=8137 u=gbrito n=ansible | ok: [127.0.0.1] => {
+    "msg": "Después de la ejecución de todos los roles"
+}
+2024-07-08 23:21:05,893 p=8137 u=gbrito n=ansible | ok: [localhost] => {
+    "msg": "Después de la ejecución de todos los roles"
+}
+2024-07-08 23:21:05,984 p=8137 u=gbrito n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2024-07-08 23:21:05,984 p=8137 u=gbrito n=ansible | 127.0.0.1                  : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-07-08 23:21:05,984 p=8137 u=gbrito n=ansible | localhost                  : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

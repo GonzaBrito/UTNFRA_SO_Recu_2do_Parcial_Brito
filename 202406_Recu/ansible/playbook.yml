@@ -1,0 +1,19 @@
+- hosts: all
+
+  tasks:
+    - include_role:
+        name: 2PRecuperatorio
+
+    - include_role:
+        name: Alta_Usuarios_Brito
+
+    - include_role:
+        name: Sudoers_Brito
+
+    - include_role:
+        name: Instala-tools_Brito
+
+    - name: "Otra tarea"
+      debug:
+        msg: "Después de la ejecución de todos los roles"
+

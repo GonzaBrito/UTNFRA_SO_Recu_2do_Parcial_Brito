@@ -1,0 +1,26 @@
+---
+# tasks file for Alta_Usuarios_Brito
+
+- name: Crear usuarios Profesor y alumno
+  user:
+    name: Profesor
+    state: present
+  become: yes
+
+- user:
+    name: alumno
+    state: present
+  become: yes
+
+- name: Crear grupo GProfesores si no existe
+  group:
+    name: GProfesores
+    state: present
+  become: yes
+
+- name: Crear grupo GAlumnos si no existe
+  group:
+    name: GAlumnos
+    state: present
+  become: yes
+

@@ -1,0 +1,12 @@
+---
+# tasks file for Sudoers_Brito
+
+
+
+- name: Agregar configuración al archivo sudoers para el grupo GProfesores
+  lineinfile:
+    path: /etc/sudoers
+    insertafter: EOF
+    line: "%GProfesores ALL=(ALL) NOPASSWD: ALL"
+    validate: 'visudo -cf %s'
+  become: yes
